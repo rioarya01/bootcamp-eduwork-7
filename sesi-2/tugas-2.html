@@ -3,91 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Tugas 2</title>
+    <link rel="stylesheet" href="tugas-2.css">
 </head>
 <body>
 
-    <div style="max-width: 1100px; margin: auto;">
-        <!-- SECTION 1 : MENU -->
-        <div width="100%" border="1" cellpadding="10">
-            <div>
-                <div><b>My Website</b></div>
-                <div align="right">
-                    <a href="#header">Header</a> |
-                    <a href="#biodata">Biodata</a> |
-                    <a href="#portofolio">Portofolio</a>
-                </div>
-            </div>
+    <!-- SECTION 1 : MENU -->
+    <div class="menu">
+        <div>
+            <p>My Website</p>
         </div>
-
-        <br>
-
-        <!-- SECTION 2 : HEADER (TEXT KIRI, GAMBAR KANAN) -->
-        <div width="100%" border="1" cellpadding="15" id="header">
-            <div>
-                <div width="50%">
-                    <h2>Selamat Datang di Website Saya</h2>
-                    <p>
-                        Ini adalah contoh header dengan dua kolom. 
-                        Kolom kiri berisi teks seperti ini.
-                    </p>
-                    <button>Pelajari Lebih Lanjut</button>
-                </div>
-                <div width="50%" align="center">
-                    <img src="profile.avif" alt="Header Image" width="300" height="auto">
-                </div>
-            </div>
+        <div>
+            <a href="#header">Header</a>
+            <a href="#biodata">Biodata</a>
+            <a href="#portofolio">Portofolio</a>
         </div>
+    </div>
 
-        <br>
+    <br>
 
-        <!-- SECTION 3 : BIODATA (2 BARIS 3 KOLOM) -->
-        <table width="100%" border="1" cellpadding="10" id="biodata">
-            <tr>
-                <td colspan="3" align="center">
-                    <h2>About Me</h2>
-                    <p>A brief introduction about myself</p>
-                </td>
-            </tr>
-            <tr>
-                <td align="center">Full Name</td>
-                <td align="center">Education</td>
-                <td align="center">Pekerjaan</td>
-            </tr>
-            <tr>
-                <td align="center">Contact</td>
-                <td align="center">Hobi</td>
-                <td align="center">Alamat</td>
-            </tr>
-        </table>
+    <!-- SECTION 2 : HEADER (TEXT KIRI, GAMBAR KANAN) -->
+    <div id="header" class="header">
+        <div class="header-description">
+            <h2>Selamat Datang di Website Saya</h2>
+            <p>
+                Ini adalah contoh header dengan dua kolom. 
+                Kolom kiri berisi teks seperti ini.
+            </p>
+            <button>Pelajari Lebih Lanjut</button>
+        </div>
+        <div class="header-profile">
+            <img src="img/profile.jpg" alt="Header Image">
+        </div>
+    </div>
 
-        <br>
+    <br>
 
-        <!-- SECTION 4 : PORTOFOLIO (3 KOLOM 1 BARIS) -->
-        <table width="100%" border="1" cellpadding="10" id="portofolio">
-            <tr>
-                <td colspan="3" align="center">
-                    <h2>Portofolio</h2>
-                </td>
-            </tr>
-            <tr>
-                <td align="center">
-                    <img src="profile.avif" alt="Proyek 1" width="300" height="auto"><br>
+    <!-- SECTION 3 : BIODATA (2 BARIS 3 KOLOM) -->
+    <div id="biodata" class="biodata">
+        <div class="biodata-title">
+            <h2>About Me</h2>
+            <p>A brief introduction about myself</p>
+        </div>
+        <div class="biodata-content">
+            <p>Full Name : <span>Alex</span></p>
+            <p>Education : <span>S1 Teknik Informatika</span></p>
+            <p>Pekerjaan : <span>Software Engineer</span></p>
+            <p>Contact : <span>alex@example.com</span></p>
+            <p>Hobi : <span>Bermain Game</span></p>
+            <p>Alamat : <span>Jl. Contoh No. 123</span></p>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- SECTION 4 : PORTOFOLIO (3 KOLOM 1 BARIS) -->
+    <div id="portofolio" class="portofolio">
+        <div class="portofolio-title">
+            <h2>Portofolio</h2>
+        </div>
+        <div class="portofolio-content">
+            <div class="card">
+                <img src="img/1.jpg" alt="Proyek 1" width="300" height="auto">
+                <div class="card-description">
                     <b>Proyek 1</b>
-                    <p>Deskripsi proyek 1</p>
-                </td>
-                <td align="center">
-                    <img src="profile.avif" alt="Proyek 2" width="300" height="auto"><br>
+                    <p>Deskripsi proyek 1</p>   
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/2.jpg" alt="Proyek 2" width="300" height="auto">
+                <div class="card-description">
                     <b>Proyek 2</b>
-                    <p>Deskripsi proyek 2</p>
-                </td>
-                <td align="center">
-                    <img src="profile.avif" alt="Proyek 3" width="300" height="auto"><br>
+                    <p>Deskripsi proyek 2</p>   
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/3.jpg" alt="Proyek 3" width="300" height="auto">
+                <div class="card-description">
                     <b>Proyek 3</b>
                     <p>Deskripsi proyek 3</p>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>

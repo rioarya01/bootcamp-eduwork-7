@@ -1,0 +1,298 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #020024;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    padding: 10px;
+    color: #fff;
+    position: sticky;
+    top: 0;
+}
+
+.menu p {
+    font-size: xx-large;
+    font-weight: bold;
+    color: #fff;
+    margin-left: 15px;
+}
+
+.menu a {
+    font-size: large;
+    font-weight: bolder;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 15px;
+    transition: color 0.2s;
+    transition-delay: 0.1s; /
+}
+
+.menu a:hover {
+    color: #090979;
+
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header-description {
+    padding: 20px;
+}
+
+.header-description h2 {
+    font-size: xx-large;
+    font-weight: bold;
+    color: #090979;
+    margin-bottom: 10px;
+}
+
+.header-description p {
+    font-size: large;
+    line-height: 1.6;
+    color: #333;
+}
+
+.header-description button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: large;
+    font-weight: bold;
+    color: #fff;
+    background-color: #090979;
+    border: 2px solid #090979;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.header-description button:hover {
+    background-color: #fff;
+    color: #090979;
+    border: 2px solid #090979;
+}
+
+.header-profile img {
+    width: 500px;
+    height: auto;
+    border-radius: 40px;
+}
+
+.biodata {
+    display: flex;
+    flex-direction: column;
+}
+
+.biodata-title {
+    grid-column: span 3;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.biodata-title h2 {
+    font-size: xx-large;
+    font-weight: bold;
+    color: #090979;
+    margin-bottom: 10px;
+}
+
+.biodata-title p {
+    font-size: large;
+    line-height: 1.6;
+    color: #333;
+}
+
+.biodata-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.biodata-content p {
+    font-size: large;
+    font-weight: bolder;
+    color: #00d4ff;
+    text-align: center;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.biodata-content span {
+    margin-top: 10px;
+    font-size: medium;
+    font-weight: normal;
+    color: #333;
+}
+
+.portofolio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.portofolio-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.portofolio-title h2 {
+    font-size: xx-large;
+    font-weight: bold;
+    color: #090979;
+    margin-bottom: 10px;
+}
+
+.portofolio-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    gap: 50px;
+}
+
+.card {
+    text-align: center;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 6px 2px 10px #333;
+}
+
+.card img {
+    width: 500px;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-description {
+    margin-top: 12px;
+}
+
+.card-description b {
+    font-size: larger;
+}
+
+.card-description p {
+    font-size: medium;
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Responsive Breakpoint */
+
+/* Tab */
+@media (max-width: 999px) {
+    .menu {
+        flex-direction: column;
+    }
+
+    .menu p {
+        margin: 10px 0;
+    }
+
+    .menu a {
+        font-size: medium;
+        font-weight: normal;
+        gap: 2px;
+    }
+
+    .header {
+        display: block;
+    }
+
+    .header-description {
+        text-align: center;
+    }
+
+    .header-profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .header-profile img {
+        width: 80%;
+        height: auto;
+    }
+
+    .biodata-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 0 15px;
+    }
+
+    .biodata-content p {
+        border-radius: 8px;
+    }
+
+    .portofolio-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .card{
+        width: 80%;
+        margin: auto;
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .menu {
+        flex-direction: column;
+    }
+
+    .menu p {
+        margin: 10px 0;
+    }
+
+    .menu a {
+        font-size: medium;
+        font-weight: normal;
+        gap: 2px;
+    }
+
+    .header {
+        display: block;
+    }
+
+    .header-profile img {
+        width: 100%;
+        height: auto;
+        justify-items: flex-start;
+    }
+
+    .biodata-content {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .biodata-content p {
+        border-radius: 8px;
+    }
+
+    .portofolio-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+}
