@@ -1,0 +1,48 @@
+:root {
+    --brand-primary: #090979;
+    --brand-secondary: #00d4ff;
+}
+
+/* text */
+.text-brand-primary {
+    color: var(--brand-primary);
+}
+
+.text-brand-secondary {
+    color: var(--brand-secondary);
+}
+
+/* background */
+.bg-brand-primary {
+    background-color: var(--brand-primary);
+}
+
+.bg-brand-secondary {
+    background-color: var(--brand-secondary);
+}
+
+/* border */
+.border-brand-primary {
+    border-color: var(--brand-primary);
+}
+
+.border-brand-secondary {
+    border-color: var(--brand-secondary);
+}
+
+/* button */
+.btn-brand-primary {
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: #fff;
+}
+
+.btn-brand-primary:hover {
+    background-color: #fff;
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+}
+
+* {
+    font-family: Montserrat,sans-serif;
+}
