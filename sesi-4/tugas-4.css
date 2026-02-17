@@ -1,0 +1,186 @@
+:root {
+    --brand-primary: #FD6F00;
+    --brand-secondary: #FF8B31;
+}
+
+/* text */
+.text-brand-primary {
+    color: var(--brand-primary);
+}
+
+.text-brand-secondary {
+    color: var(--brand-secondary);
+}
+
+/* background */
+.bg-brand-primary {
+    background-color: var(--brand-primary);
+}
+
+.bg-brand-secondary {
+    background-color: var(--brand-secondary);
+}
+
+/* border */
+.border-brand-primary {
+    border-color: var(--brand-primary);
+}
+
+.border-brand-secondary {
+    border-color: var(--brand-secondary);
+}
+
+/* button */
+.btn-brand-primary {
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: #fff;
+}
+
+.btn-brand-primary:hover {
+    background-color: #fff;
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+}
+
+.btn-outline-brand-primary {
+    background-color: transparent;
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+}
+
+.btn-outline-brand-primary:hover {
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: #fff;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+section {
+    scroll-margin-top: 90px;
+}
+
+
+.text-justify {
+    text-align: justify;
+}
+
+/* Navbar */
+.navbar-nav .nav-link {
+    transition: 0.25s ease;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--brand-primary) !important;
+    font-weight: 600; /* biasanya lebih clean dari bold */
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--brand-primary);
+}
+
+
+/* Custom Progress Bar */
+.custom-progress {
+    height: 10px;
+    border-radius: 20px;
+    position: relative;
+    overflow: visible !important; /* supaya bulatan tidak terpotong */
+}
+
+/* Progress Bar */
+.custom-progress .progress-bar {
+    position: relative;
+    border-radius: 20px;
+    overflow: visible;
+}
+
+/* Progress Bar (bulatan di ujung) */
+.custom-progress .progress-bar::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
+    
+    width: 26px;
+    height: 26px;
+    
+    background: #fff; /* isi bulatan */
+    border: 3px solid var(--brand-primary); /* warna lingkaran */
+    border-radius: 50%;
+}
+
+/* Testimonial Swiper */
+/* ukuran slider */
+.testimonialSwiper {
+    padding: 60px 0;
+}
+
+/* slide wrapper */
+.testimonialSwiper .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    transition: all 0.4s ease;
+}
+
+/* card */
+.testimonial-card {
+    width: 100%;
+    min-height: 180px; /* tinggi sama semua */
+    padding: 30px;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+    display: flex;
+    align-items: center;
+
+    transform: scale(0.85);
+    opacity: 0.4;
+    filter: blur(2px);
+    transition: all 0.4s ease;
+}
+
+/* card aktif (tengah) */
+.testimonialSwiper .swiper-slide-active .testimonial-card {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+}
+
+/* hover effect */
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+/* posisi pagination */
+.testimonialSwiper .swiper-pagination {
+    bottom: 0;
+}
+
+/* bullet default */
+.testimonialSwiper .swiper-pagination-bullet {
+    width: 30px;
+    height: 6px;
+    border-radius: 20px;
+    background: #ddd;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+/* bullet aktif */
+.testimonialSwiper .swiper-pagination-bullet-active {
+    width: 40px;
+    background: var(--brand-primary); /* ganti sesuai warna brand kamu */
+}
+
