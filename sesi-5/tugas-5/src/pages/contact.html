@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/src/img/logo-vertical.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="../css/output.css" rel="stylesheet">
+    <title>Awesome Store</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar"></div>
+    
+    <!-- Contact Us Section -->
+    <section class="max-w-screen-xl mx-auto px-6 py-36">
+        <!-- Title -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-primary mb-3">Contact Us</h1>
+            <p class="text-gray-500 max-w-xl mx-auto">
+            Have questions or need assistance? Our team is ready to help you anytime.
+            </p>
+        </div>
+        <!-- Content -->
+        <div class="grid md:grid-cols-2 gap-10">
+            <!-- LEFT — Contact Info -->
+            <div class="space-y-6">
+                <div class="bg-white border rounded-2xl shadow-sm p-6 hover:shadow-md transition">
+                    <h3 class="font-semibold text-lg mb-2">📧 Email</h3>
+                    <p class="text-gray-600">support@awesomestore.com</p>
+                </div>
+                <div class="bg-white border rounded-2xl shadow-sm p-6 hover:shadow-md transition">
+                    <h3 class="font-semibold text-lg mb-2">📞 Phone</h3>
+                    <p class="text-gray-600">+1 (123) 456-7890</p>
+                </div>
+                <div class="bg-white border rounded-2xl shadow-sm p-6 hover:shadow-md transition">
+                    <h3 class="font-semibold text-lg mb-2">📍 Address</h3>
+                    <p class="text-gray-600">
+                    123 Fashion Street, Style City, SC 12345
+                    </p>
+                </div>
+            </div>
+
+            <!-- RIGHT — Contact Form -->
+            <form class="bg-white border rounded-2xl shadow-sm p-8 space-y-5">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Full Name</label>
+                    <input
+                    type="text"
+                    placeholder="Your name"
+                    class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary outline-none"
+                    />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Email</label>
+                    <input
+                    type="email"
+                    placeholder="Your email"
+                    class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary outline-none"
+                    />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Message</label>
+                    <textarea
+                    rows="4"
+                    placeholder="Write your message..."
+                    class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary outline-none"
+                    ></textarea>
+                </div>
+                <button
+                    type="submit"
+                    class="w-full bg-primary text-white py-3 rounded-lg hover:opacity-90 transition font-semibold">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Flowbite -->
+    <script src="/node_modules/flowbite/dist/flowbite.min.js"></script>
+    <!-- Navbar & Footer -->
+    <script src="/src/js/components.js"></script>
+</body>
+</html>

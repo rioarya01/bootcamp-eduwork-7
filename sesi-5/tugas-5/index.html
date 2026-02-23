@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/src/img/logo-vertical.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="src/css/output.css" rel="stylesheet">
+    <title>Awesome Store</title>
+</head>
+<body>
+    <!-- Navbar Section -->
+    <div id="navbar"></div>
+
+    <!-- Hero Section -->
+    <section class="relative bg-center bg-cover bg-no-repeat bg-[url('https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2071')]">
+        <!-- gradient overlay (lebih stylish dari hitam polos) -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30"></div>
+        <div class="relative max-w-screen-xl mx-auto px-4 py-28 lg:py-56 text-white">
+            <!-- badge -->
+            <span class="inline-block mb-6 px-4 py-1.5 text-sm font-medium bg-white/10 backdrop-blur rounded-full border border-white/20">
+            🔥 New Collection 2026
+            </span>
+
+            <!-- heading -->
+            <h1 class="mb-6 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-3xl leading-tight">
+            Boost Your Confidence
+                <span class="block text-primary">
+                    With Premium Local Fashion
+                </span>
+            </h1>
+
+            <!-- description -->
+            <p class="mb-10 text-lg md:text-xl text-white/90 max-w-2xl">
+            Discover modern fashion collections from local Indonesian brands. Stylish designs, premium quality, and comfortable for everyday wear.
+            </p>
+
+            <!-- CTA buttons -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <!-- primary -->
+                <a href="/src/pages/products.html"
+                    class="inline-flex items-center justify-center bg-primary hover:bg-secondary 
+                    px-8 py-3 rounded-base font-semibold shadow-lg
+                    transition-all duration-300 ease-out hover:scale-105"
+                    >
+                    Shop Now
+                </a>
+
+                <!-- secondary -->
+                <a href="/src/pages/products.html"
+                    class="inline-flex items-center justify-center border border-white/70 
+                    hover:bg-white hover:text-black
+                    px-8 py-3 rounded-base font-semibold
+                    transition-all duration-300 ease-out hover:scale-105"
+                    >
+                    View Collection
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Seller Section -->
+    <section class="bg-neutral-primary py-20">
+        <div class="max-w-screen-xl mx-auto px-4">
+            <!-- Section Title -->
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-bold text-heading mb-3">
+                    Best Seller
+                </h2>
+                <p class="text-body max-w-xl mx-auto">
+                    Produk paling diminati pelanggan dengan kualitas terbaik dan desain modern.
+                </p>
+            </div>
+            <!-- Product Grid -->
+            <div id="bestSellerContainer" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- Section Category Stock -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Section Title -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-heading mb-3">Product Categories</h2>
+                <p class="text-gray-500">Available stock per category</p>
+            </div>
+            <!-- Section Content -->
+            <div id="categoryStockContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 "></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    
+    <script type="module" src="/src/js/index.js"></script>
+
+    <!-- Product Script -->
+    <script type="module" src="/src/js/products-page.js"></script>
+
+    <!-- Category Script -->
+    <script type="module" src="/src/js/category-stock.js"></script>
+
+    <!-- Flowbite -->
+    <script src="/node_modules/flowbite/dist/flowbite.min.js"></script>
+    
+    <!-- Navbar & Footer -->
+    <script src="/src/js/components.js"></script>
+</body>
+</html>
