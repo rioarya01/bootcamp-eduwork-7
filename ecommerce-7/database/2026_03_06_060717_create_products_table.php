@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->timestamps(); // menambahkan kolom created_at dan updated_at
         });
     }
 
