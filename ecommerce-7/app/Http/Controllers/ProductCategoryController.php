@@ -12,7 +12,10 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $productCategories = ProductCategory::withCount('products')
+                                ->withSum('products as total_stock', 'stock')
+                                ->get();
+        return view('admin.product-category.index', compact('productCategories'));
     }
 
     /**
@@ -20,7 +23,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.product-category.create');
     }
 
     /**
@@ -28,7 +31,14 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:product_categories',
+        ]);
+
+        ProductCategory::create($request->only(['name', 'slug']));
+
+        return redirect()->route('product-categories.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
     /**
@@ -44,7 +54,7 @@ class ProductCategoryController extends Controller
      */
     public function edit(ProductCategory $productCategory)
     {
-        //
+        return view('admin.product-category.edit', compact('productCategory'));
     }
 
     /**
@@ -52,7 +62,14 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, ProductCategory $productCategory)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:product_categories,slug,' . $productCategory->id,
+        ]);
+
+        $productCategory->update($request->only(['name', 'slug']));
+
+        return redirect()->route('product-categories.index')->with('success', 'Kategori berhasil diupdate.');
     }
 
     /**
@@ -60,6 +77,8 @@ class ProductCategoryController extends Controller
      */
     public function destroy(ProductCategory $productCategory)
     {
-        //
+        $productCategory->delete();
+
+        return redirect()->route('product-categories.index')->with('success', 'Kategori berhasil dihapus.');
     }
 }
