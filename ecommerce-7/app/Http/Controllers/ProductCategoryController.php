@@ -23,7 +23,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.product-category.create');
+        // 
     }
 
     /**
@@ -54,7 +54,7 @@ class ProductCategoryController extends Controller
      */
     public function edit(ProductCategory $productCategory)
     {
-        return view('admin.product-category.edit', compact('productCategory'));
+        //
     }
 
     /**
@@ -62,14 +62,14 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, ProductCategory $productCategory)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:product_categories,slug,' . $productCategory->id,
-        ]);
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'slug' => 'required|string|max:255|unique:product_categories,slug,' . $productCategory->id,
+        // ]);
 
-        $productCategory->update($request->only(['name', 'slug']));
+        // $productCategory->update($request->only(['name', 'slug']));
 
-        return redirect()->route('product-categories.index')->with('success', 'Kategori berhasil diupdate.');
+        // return redirect()->route('product-categories.index')->with('success', 'Kategori berhasil diupdate.');
     }
 
     /**

@@ -16,9 +16,11 @@
                     @endif
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-medium">Daftar Kategori Produk</h3>
-                        <a href="{{ route('product-categories.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Tambah Kategori
-                        </a>
+                        <x-primary-button
+                            x-data=""
+                            x-on:click.prevent="$dispatch('open-modal', 'create-new-category')"
+                            >{{ __('Tambah Kategori') }}
+                        </x-primary-button>
                     </div>
                     <table id="productCategoriesTable" class="display w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -32,22 +34,56 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($productCategories as $category)
+                            @foreach($productCategories as $productCategory)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <td class="px-6 py-4">{{ $category->id }}</td>
-                                    <td class="px-6 py-4">{{ $category->name }}</td>
-                                    <td class="px-6 py-4">{{ $category->slug }}</td>
-                                    <td class="px-6 py-4">{{ $category->products_count }}</td>
-                                    <td class="px-6 py-4">{{ $category->total_stock }}</td>
+                                    <td class="px-6 py-4">{{ $productCategory->id }}</td>
+                                    <td class="px-6 py-4">{{ $productCategory->name }}</td>
+                                    <td class="px-6 py-4">{{ $productCategory->slug }}</td>
+                                    <td class="px-6 py-4">{{ $productCategory->products_count }}</td>
+                                    <td class="px-6 py-4">{{ $productCategory->total_stock }}</td>
                                     <td class="px-6 py-4">
-                                        <a href="{{ route('product-categories.edit', $category->id) }}" class="bg-yellow-600 transition hover:bg-yellow-900 text-white rounded-md px-3 py-1.5">Edit</a>
-                                        <form action="{{ route('product-categories.destroy', $category->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
+                                        <x-primary-button
+                                            x-data=""
+                                            x-on:click.prevent="$dispatch('open-modal', 'edit-category.{{ $productCategory->id }}')"
+                                            >{{ __('Edit') }}
+                                        </x-primary-button>
+                                        <form action="{{ route('product-categories.destroy', $productCategory->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="bg-red-600 transition hover:bg-red-900 text-white rounded-md px-3 py-1.5">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
+                                @push('scripts')
+                                    <x-modal name="edit-category.{{ $productCategory->id }}" maxWidth="md" focusable>
+                                        <form method="POST" action="{{ route('product-categories.update', $productCategory) }}" class="p-4">
+                                            @csrf
+                                            @method('PUT')
+                                            <h2 class="text-lg font-medium text-gray-900">
+                                                Edit Kategori
+                                            </h2>
+
+                                            <div class="mt-4">
+                                                <x-input-label for="name" value="{{ __('Nama Kategori') }}" />
+                                                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" value="{{ old('name', $productCategory->name) }}" required />
+                                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                            </div>
+                                            <div class="mt-4">
+                                                <x-input-label for="slug" value="{{ __('Slug Kategori') }}" />
+                                                <x-text-input id="slug" name="slug" type="text" class="mt-1 block w-full" value="{{ old('slug', $productCategory->slug) }}" required />
+                                                <x-input-error :messages="$errors->get('slug')" class="mt-2" />
+                                            </div>
+                                            <div class="mt-6 flex justify-end">
+                                                <x-secondary-button x-on:click="$dispatch('close')">
+                                                    {{ __('Batal') }}
+                                                </x-secondary-button>
+                                                <x-primary-button class="ms-3" type="submit">
+                                                    {{ __('Simpan') }}
+                                                </x-primary-button>
+                                            </div>
+                                        </form>
+                                    </x-modal>
+                                @endpush
                             @endforeach
                         </tbody>
                     </table>
@@ -62,6 +98,34 @@
     @endpush
 
     @push('scripts')
+        {{-- Modal Laravel Breeze (Tambah Kategori) --}}
+        <x-modal name="create-new-category" maxWidth="md" focusable>
+            <form method="POST" action="{{ route('product-categories.store') }}" class="p-6">
+                @csrf
+                <h2 class="text-lg font-medium text-gray-900">
+                    {{ __('Tambah Kategori Produk') }}
+                </h2>
+                <div class="mt-4">
+                    <x-input-label for="name" value="{{ __('Nama Kategori') }}" />
+                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" value="{{ old('name') }}" required />
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                </div>
+                <div class="mt-4">
+                    <x-input-label for="slug" value="{{ __('Slug Kategori') }}" />
+                    <x-text-input id="slug" name="slug" type="text" class="mt-1 block w-full" value="{{ old('slug') }}" required />
+                    <x-input-error :messages="$errors->get('slug')" class="mt-2" />
+                </div>
+                <div class="mt-4 flex justify-end">
+                    <x-secondary-button x-on:click="$dispatch('close')">
+                        {{ __('Batal') }}
+                    </x-secondary-button>
+                    <x-primary-button class="ml-2">
+                        {{ __('Simpan') }}
+                    </x-primary-button>
+                </div>
+            </form>
+        </x-modal>
+
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
