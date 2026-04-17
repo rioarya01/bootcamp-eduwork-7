@@ -15,13 +15,14 @@ class DashboardController extends Controller
         $jumlahProduk = Product::count();
         $jumlahCategori = ProductCategory::count();
         $jumlahOrder = Order::count();
-        // $jumlahStok = Product::sum('stock');
+        $jumlahStok = Product::sum('stock');
         $jumlahKlikProduct = 100;
         $data = [
             ['label' => 'Jumlah Produk', 'value' => $jumlahProduk, 'color' => '#4F46E5', 'icon' => 'box'],
             ['label' => 'Jumlah Categori', 'value' => $jumlahCategori, 'color' => '#14B8A6', 'icon' => 'category'],
             ['label' => 'Jumlah Order', 'value' => $jumlahOrder, 'color' => '#F59E0B', 'icon' => 'shopping_cart'],
             ['label' => 'Jumlah Klik Product', 'value' => $jumlahKlikProduct, 'color' => '#8B5CF6', 'icon' => 'touch_app'],
+            ['label' => 'Jumlah Stok', 'value' => $jumlahStok, 'color' => '#EF4444', 'icon' => 'inventory'],
         ];
         $salesData = $this->orderData();
         $latestOrders = Order::latest()->take(5)->get();
