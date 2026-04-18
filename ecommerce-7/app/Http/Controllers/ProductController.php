@@ -14,11 +14,19 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::with('product_category')
-                        ->orderBy('created_at', 'desc');
-                        if($request->has('search')) {
-                            $products->where('name', 'like', '%' . $request->search . '%');
-                        }
-                        $products = $products->paginate(10);
+                        ->orderBy('price', 'desc');
+
+        // if(
+        //     $request->has('price_order') 
+        //     && in_array($request->price_order, ['asc', 'desc'])
+        // ) {
+        //     $products->orderBy('price', $request->price_order);
+        // }
+        if($request->has('search')) {
+            $products->where('name', 'like', '%' . $request->search . '%');
+        }
+        $products = $products->paginate(10);
+        // dd($products);
         return view('admin.product.index', compact('products'));
     }
 
