@@ -6,14 +6,14 @@
     </x-slot>
 
     <div class="py-12">
+        {{-- Success and Error Messages --}}
+        
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mb-[20px]">
+                @include('layouts.success-error-msg')
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    @if(session('success'))
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                            {{ session('success') }}
-                        </div>
-                    @endif
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-medium">Daftar Kategori Produk</h3>
                         <x-primary-button
@@ -40,7 +40,7 @@
                                     <td class="px-6 py-4">{{ $productCategory->name }}</td>
                                     <td class="px-6 py-4">{{ $productCategory->slug }}</td>
                                     <td class="px-6 py-4">{{ $productCategory->products_count }}</td>
-                                    <td class="px-6 py-4">{{ $productCategory->total_stock }}</td>
+                                    <td class="px-6 py-4">{{ $productCategory->total_stock ?? 'produk belum tersedia' }}</td>
                                     <td class="px-6 py-4">
                                         <x-primary-button
                                             x-data=""
@@ -56,7 +56,7 @@
                                 </tr>
                                 @push('scripts')
                                     <x-modal name="edit-category.{{ $productCategory->id }}" maxWidth="md" focusable>
-                                        <form method="POST" action="{{ route('product-categories.update', $productCategory) }}" class="p-4">
+                                        <form method="POST" action="{{ route('product-categories.update', $productCategory) }}" class="p-4 slug-group">
                                             @csrf
                                             @method('PUT')
                                             <h2 class="text-lg font-medium text-gray-900">
@@ -65,13 +65,12 @@
 
                                             <div class="mt-4">
                                                 <x-input-label for="name" value="{{ __('Nama Kategori') }}" />
-                                                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" value="{{ old('name', $productCategory->name) }}" required />
+                                                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full name-input" value="{{ old('name', $productCategory->name) }}" required />
                                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                             </div>
                                             <div class="mt-4">
-                                                <x-input-label for="slug" value="{{ __('Slug Kategori') }}" />
-                                                <x-text-input id="slug" name="slug" type="text" class="mt-1 block w-full" value="{{ old('slug', $productCategory->slug) }}" required />
-                                                <x-input-error :messages="$errors->get('slug')" class="mt-2" />
+                                                <x-input-label for="slug" value="{{ __('Slug Kategori (otomatis)') }}" />
+                                                <x-text-input id="slug" name="slug" type="text" class="mt-1 block w-full border-slate-200 outline-none focus:outline-none focus:ring-0 focus:border-slate-200 slug-input" value="{{ old('slug', $productCategory->slug) }}" readonly />
                                             </div>
                                             <div class="mt-6 flex justify-end">
                                                 <x-secondary-button x-on:click="$dispatch('close')">
@@ -100,20 +99,19 @@
     @push('scripts')
         {{-- Modal Laravel Breeze (Tambah Kategori) --}}
         <x-modal name="create-new-category" maxWidth="md" focusable>
-            <form method="POST" action="{{ route('product-categories.store') }}" class="p-6">
+            <form method="POST" action="{{ route('product-categories.store') }}" class="p-6 slug-group">
                 @csrf
                 <h2 class="text-lg font-medium text-gray-900">
                     {{ __('Tambah Kategori Produk') }}
                 </h2>
                 <div class="mt-4">
                     <x-input-label for="name" value="{{ __('Nama Kategori') }}" />
-                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" value="{{ old('name') }}" required />
+                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full name-input" value="{{ old('name') }}" required />
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
                 <div class="mt-4">
-                    <x-input-label for="slug" value="{{ __('Slug Kategori') }}" />
-                    <x-text-input id="slug" name="slug" type="text" class="mt-1 block w-full" value="{{ old('slug') }}" required />
-                    <x-input-error :messages="$errors->get('slug')" class="mt-2" />
+                    <x-input-label for="slug" value="{{ __('Slug Kategori (otomatis)') }}" />
+                    <x-text-input id="slug" name="slug" type="text" class="mt-1 block w-full border-slate-200 outline-none focus:outline-none focus:ring-0 focus:border-slate-200 slug-input" readonly/>
                 </div>
                 <div class="mt-4 flex justify-end">
                     <x-secondary-button x-on:click="$dispatch('close')">
@@ -135,6 +133,28 @@
         <script>
             $(document).ready(function() {
                 $('#productCategoriesTable').DataTable();
+            });
+        </script>
+
+
+        {{-- Slug Generator --}}
+        <<script>
+            document.querySelectorAll('.slug-group').forEach(group => {
+                const nameInput = group.querySelector('.name-input');
+                const slugInput = group.querySelector('.slug-input');
+
+                if (!nameInput || !slugInput) return;
+
+                nameInput.addEventListener('input', function () {
+                    let slug = this.value
+                        .toLowerCase()
+                        .trim()
+                        .replace(/[^a-z0-9\s-]/g, '')
+                        .replace(/\s+/g, '-')
+                        .replace(/-+/g, '-');
+
+                    slugInput.value = slug;
+                });
             });
         </script>
     @endpush

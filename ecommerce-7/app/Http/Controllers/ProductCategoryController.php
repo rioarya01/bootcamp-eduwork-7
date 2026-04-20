@@ -32,13 +32,26 @@ class ProductCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:product_categories',
+            'name' => 'required|string|max:100|unique:product_categories,name',
+            // 'slug' => 'required|string|max:100|unique:product_categories,slug',
         ]);
 
-        ProductCategory::create($request->only(['name', 'slug']));
+        $slug = strtolower(str_replace(' ', '-', $request->name));
 
-        return redirect()->route('product-categories.index')->with('success', 'Kategori berhasil ditambahkan.');
+        ProductCategory::create([
+            'name' => $request->name,
+            'slug' => $slug,
+        ]);
+
+        // $category = new ProductCategory();
+        // $category->name = $request->name;
+        // $category->slug = $request->slug;
+        // $category->save();
+
+        return redirect()
+                // ->route('product-categories.index')
+                ->back()
+                ->with('success', 'Kategori Produk berhasil ditambahkan.');
     }
 
     /**
@@ -63,13 +76,18 @@ class ProductCategoryController extends Controller
     public function update(Request $request, ProductCategory $productCategory)
     {
         // $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'slug' => 'required|string|max:255|unique:product_categories,slug,' . $productCategory->id,
+        //     'name' => 'required|string|max:100|unique:product_categories,name,'.$productCategory->id,
+        //     'slug' => 'required|string|max:100|unique:product_categories,slug,'.$productCategory->id,
         // ]);
 
-        // $productCategory->update($request->only(['name', 'slug']));
+        // $productCategory->update([
+        //     'name' => $request->name,
+        //     'slug' => $request->slug,
+        // ]);
 
-        // return redirect()->route('product-categories.index')->with('success', 'Kategori berhasil diupdate.');
+        // return redirect()
+        //     ->back()
+        //     ->with('success', 'Kategori berhasil diupdate.');
     }
 
     /**
