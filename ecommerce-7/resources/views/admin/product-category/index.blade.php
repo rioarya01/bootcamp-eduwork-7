@@ -47,13 +47,15 @@
                                             x-on:click.prevent="$dispatch('open-modal', 'edit-category.{{ $productCategory->id }}')"
                                             >{{ __('Edit') }}
                                         </x-primary-button>
-                                        <form action="{{ route('product-categories.destroy', $productCategory->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
+                                        <form action="{{ route('product-categories.destroy', $productCategory->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori dengan ID {{ $productCategory->id }}?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="bg-red-600 transition hover:bg-red-900 text-white rounded-md px-3 py-1.5">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
+
+                                {{-- Modal Laravel Breeze (Edit Kategori) --}}
                                 @push('scripts')
                                     <x-modal name="edit-category.{{ $productCategory->id }}" maxWidth="md" focusable>
                                         <form method="POST" action="{{ route('product-categories.update', $productCategory) }}" class="p-4 slug-group">
@@ -71,6 +73,7 @@
                                             <div class="mt-4">
                                                 <x-input-label for="slug" value="{{ __('Slug Kategori (otomatis)') }}" />
                                                 <x-text-input id="slug" name="slug" type="text" class="mt-1 block w-full border-slate-200 outline-none focus:outline-none focus:ring-0 focus:border-slate-200 slug-input" value="{{ old('slug', $productCategory->slug) }}" readonly />
+                                                <x-input-error :messages="$errors->get('slug')" class="mt-2" />
                                             </div>
                                             <div class="mt-6 flex justify-end">
                                                 <x-secondary-button x-on:click="$dispatch('close')">

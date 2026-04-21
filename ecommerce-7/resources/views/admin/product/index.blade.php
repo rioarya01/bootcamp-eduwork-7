@@ -62,7 +62,7 @@
                                             <div class="flex items-center gap-2 whitespace-nowrap">
                                                 <a href="{{ route('product.detail', $product->slug) }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-xs py-1.5 px-3 rounded transition">Lihat</a>
                                                 <a href="{{ route('products.edit', $product->id) }}" class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white text-xs py-1.5 px-3 rounded transition">Edit</a>
-                                                <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">
+                                                <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk dengan ID {{ $product->id }}?')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="bg-red-600 hover:bg-red-700 text-white text-xs py-1.5 px-3 rounded transition">Hapus</button>

@@ -75,19 +75,19 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, ProductCategory $productCategory)
     {
-        // $request->validate([
-        //     'name' => 'required|string|max:100|unique:product_categories,name,'.$productCategory->id,
-        //     'slug' => 'required|string|max:100|unique:product_categories,slug,'.$productCategory->id,
-        // ]);
+        $request->validate([
+            'name' => 'required|string|max:100|unique:product_categories,name,'.$productCategory->id,
+            'slug' => 'required|string|max:100|unique:product_categories,slug,'.$productCategory->id,
+        ]);
 
-        // $productCategory->update([
-        //     'name' => $request->name,
-        //     'slug' => $request->slug,
-        // ]);
+        $productCategory->update([
+            'name' => $request->name,
+            'slug' => $request->slug,
+        ]);
 
-        // return redirect()
-        //     ->back()
-        //     ->with('success', 'Kategori berhasil diupdate.');
+        return redirect()
+            ->back()
+            ->with('success', 'Kategori berhasil diupdate.');
     }
 
     /**
@@ -95,8 +95,20 @@ class ProductCategoryController extends Controller
      */
     public function destroy(ProductCategory $productCategory)
     {
+        $id = $productCategory->id;
+        $product_count = $productCategory->products()->count();
+
+        if ($product_count > 0) {
+            return redirect()
+                ->back()
+                ->withErrors(['error' => 'Produk dengan ID ' . $id . ' tidak dapat dihapus karena masih memiliki produk terkait.']);
+        }
+
         $productCategory->delete();
 
-        return redirect()->route('product-categories.index')->with('success', 'Kategori berhasil dihapus.');
+        return redirect()
+            ->back()
+            ->with('success', 'Produk kategori dengan ID ' . $id . ' berhasil dihapus.');
+
     }
 }
