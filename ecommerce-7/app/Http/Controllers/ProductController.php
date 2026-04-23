@@ -77,7 +77,7 @@ class ProductController extends Controller
 
         return redirect()
             ->route('products.index')
-            ->with('success', 'Product created successfully.');
+            ->with('success', 'Produk berhasil ditambahkan.');
     }
 
     /**
@@ -141,7 +141,7 @@ class ProductController extends Controller
 
         return redirect()
             ->route('products.index')
-            ->with('success', 'Product with ID ' . $product->id . ' updated successfully.');
+            ->with('success', 'Produk dengan ID ' . $product->id . ' berhasil diupdate.');
     }
 
     /**
@@ -154,7 +154,7 @@ class ProductController extends Controller
         if($product->order_items()->count() > 0 ) {
             return redirect()
                 ->route('products.index')
-                ->with('error', 'Product with ID ' . $id . ' cannot be deleted because it has existing order items.');
+                ->with('error', 'Produk dengan ID ' . $id . ' tidak dapat dihapus karena masih memiliki item pesanan.');
         }
 
         if ($product->image && Storage::disk('images')->exists($product->image)) {
@@ -165,6 +165,6 @@ class ProductController extends Controller
 
         return redirect()
             ->route('products.index')
-            ->with('success', 'Product with ID ' . $id . ' deleted successfully.');
+            ->with('success', 'Produk dengan ID ' . $id . ' berhasil dihapus.');
     }
 }

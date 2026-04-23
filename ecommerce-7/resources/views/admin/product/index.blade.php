@@ -36,6 +36,7 @@
                                     <th class="px-6 py-3 font-semibold">Deskripsi</th>
                                     <th class="px-6 py-3 font-semibold">Harga</th>
                                     <th class="px-6 py-3 font-semibold">Stok</th>
+                                    <th class="px-6 py-3 font-semibold">Clicks</th>
                                     <th class="px-6 py-3 font-semibold">Gambar</th>
                                     <th class="px-6 py-3 font-semibold">Kategori</th>
                                     <th class="px-6 py-3 font-semibold">Aksi</th>
@@ -50,6 +51,7 @@
                                         <td class="px-6 py-4">{{ Str::limit($product->description, 50) }}</td>
                                         <td class="px-6 py-4">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                                         <td class="px-6 py-4">{{ $product->stock }}</td>
+                                        <td class="px-6 py-4">{{ $product->clicks }}</td>
                                         <td class="px-6 py-4">
                                             @if ($product->image)
                                                 <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}" class="w-12 h-12 object-cover rounded">

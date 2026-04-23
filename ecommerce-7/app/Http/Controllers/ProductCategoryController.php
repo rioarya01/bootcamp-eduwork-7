@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductCategoryController extends Controller
 {
@@ -36,7 +37,9 @@ class ProductCategoryController extends Controller
             // 'slug' => 'required|string|max:100|unique:product_categories,slug',
         ]);
 
-        $slug = strtolower(str_replace(' ', '-', $request->name));
+        // $slug = strtolower(str_replace(' ', '-', $request->name));
+
+        $slug = Str::slug($request->name);
 
         ProductCategory::create([
             'name' => $request->name,
@@ -87,7 +90,7 @@ class ProductCategoryController extends Controller
 
         return redirect()
             ->back()
-            ->with('success', 'Kategori berhasil diupdate.');
+            ->with('success', 'Kategori Produk dengan ID ' . $productCategory->id . ' berhasil diupdate.');
     }
 
     /**
@@ -101,14 +104,14 @@ class ProductCategoryController extends Controller
         if ($product_count > 0) {
             return redirect()
                 ->back()
-                ->withErrors(['error' => 'Produk dengan ID ' . $id . ' tidak dapat dihapus karena masih memiliki produk terkait.']);
+                ->withErrors(['error' => 'Kategori Produk dengan ID ' . $id . ' tidak dapat dihapus karena masih memiliki produk terkait.']);
         }
 
         $productCategory->delete();
 
         return redirect()
             ->back()
-            ->with('success', 'Produk kategori dengan ID ' . $id . ' berhasil dihapus.');
+            ->with('success', 'Kategori Produk dengan ID ' . $id . ' berhasil dihapus.');
 
     }
 }

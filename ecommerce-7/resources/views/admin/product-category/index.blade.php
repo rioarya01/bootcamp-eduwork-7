@@ -139,9 +139,8 @@
             });
         </script>
 
-
         {{-- Slug Generator --}}
-        <<script>
+        <script>
             document.querySelectorAll('.slug-group').forEach(group => {
                 const nameInput = group.querySelector('.name-input');
                 const slugInput = group.querySelector('.slug-input');

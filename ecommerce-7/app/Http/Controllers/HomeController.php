@@ -17,7 +17,7 @@ class HomeController extends Controller
                         ->when($search, function ($query, $search) {
                             return $query->where('name', 'like', "%{$search}%");
                         })
-                        ->orderBy('price', 'asc')
+                        ->orderBy('id', 'desc')
                         // ->where('stock', '>', 10000)
                         ->paginate(6);
                         
@@ -33,6 +33,18 @@ class HomeController extends Controller
                                         ->inRandomOrder()
                                         ->take(4)
                                         ->get();
+        $this->clickCounter($product);
         return view('product_detail', compact('product', 'product_recommendations'));  
+    }
+
+    private function clickCounter(Product $product)
+    {
+        // add 1 to clicks with session to prevent multiple clicks in short time
+        $sessionKey = 'product_click_' . $product->id;
+        if (!session()->has($sessionKey)) {
+            session()->put($sessionKey, true);
+            $product->clicks += 1;
+            $product->save();
+        }
     }
 }
