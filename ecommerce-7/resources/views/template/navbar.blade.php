@@ -31,9 +31,9 @@
             </form>
           </li>
           @else
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('register') }}">Register</a>
-          </li>
+          </li> --}}
         @endauth
       </ul>
       <form action="{{ route('home') }}" method="GET" class="d-flex" role="search">
