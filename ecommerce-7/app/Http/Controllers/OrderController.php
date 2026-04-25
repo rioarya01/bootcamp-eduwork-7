@@ -15,7 +15,13 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()->role == 'admin') {
+            $orders = Order::latest()->paginate(10);
+        } else {
+            $orders = Order::where('user_id', Auth::id())->latest()->paginate(10);
+        }
+
+        return view('order.index', compact('orders'));
     }
 
     /**
@@ -86,7 +92,14 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $request->validate([
+            'status' => 'required|in:pending,processing,completed,cancelled',
+        ]);
+
+        $order->status = $request->status;
+        $order->save();
+
+        return redirect()->route('orders.index')->with('success', 'Order status updated successfully.');
     }
 
     /**
